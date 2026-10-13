@@ -1,9 +1,8 @@
-name: Deploy static site to GitHub Pages
+name: Test and Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -11,24 +10,46 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
+  test-portfolio:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check for critical website files
+      run: |
+        echo "Verifying that core assets exist..."
+        test -f index.html || (echo "Error: index.html is missing!" && exit 1)
+        
+    - name: Scan for broken JavaScript syntax
+      run: |
+        echo "Scanning JavaScript files for obvious errors..."
+        for file in $(find . -name "*.js" -not -path "*/node_modules/*"); do
+          node -c "$file" || exit 1
+        done
+
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }} # <-- FIXED: Changed colon to a dot
     runs-on: ubuntu-latest
+    needs: test-portfolio
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+
+    - name: Upload website files as an artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
