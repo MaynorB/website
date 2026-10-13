@@ -1,3 +1,10 @@
+:root {
+  --site-logo-image: url("favicon.svg");
+  --site-logo-size: 2.5rem;
+  --site-header-padding: 0.75rem 1.5rem;
+  --site-nav-gap: 2rem;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -16,15 +23,30 @@ body {
 .site-header {
   position: sticky;
   top: 0;
-  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: var(--site-header-padding);
   background: #fff;
   border-bottom: 1px solid #e5e5e5;
 }
 
+.site-logo {
+  display: block;
+  flex: 0 0 var(--site-logo-size);
+  width: var(--site-logo-size);
+  height: var(--site-logo-size);
+  background-image: var(--site-logo-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .main-nav {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: flex-start;
+  gap: var(--site-nav-gap);
 }
 
 .main-nav a {
@@ -53,11 +75,12 @@ body {
 
 @media (max-width: 480px) {
   .site-header {
-    padding: 1rem;
+    --site-header-padding: 0.75rem 1rem;
+    --site-logo-size: 2.25rem;
+    gap: 1rem;
   }
 
   .main-nav {
-    justify-content: space-between;
     gap: 0.75rem;
   }
 
