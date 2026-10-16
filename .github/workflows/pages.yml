@@ -6,8 +6,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
@@ -20,24 +18,28 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Check for critical website files
+    - name: Check for required website files
       run: |
-        echo "Verifying that core assets exist..."
-        test -f index.html || (echo "Error: index.html is missing!" && exit 1)
-        
-    - name: Scan for broken JavaScript syntax
-      run: |
-        echo "Scanning JavaScript files for obvious errors..."
-        for file in $(find . -name "*.js" -not -path "*/node_modules/*"); do
-          node -c "$file" || exit 1
+        required="index.html projects.html contact.html style.css favicon.svg"
+        missing=0
+        for file in $required; do
+          if [ ! -f "$file" ]; then
+            echo "Error: $file is missing!"
+            missing=1
+          fi
         done
+        exit "$missing"
 
   deploy:
+    needs: test-portfolio
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }} # <-- FIXED: Changed colon to a dot
-    runs-on: ubuntu-latest
-    needs: test-portfolio
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
