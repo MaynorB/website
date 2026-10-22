@@ -3,7 +3,7 @@
   --ink: #878c97;
   --muted: #5B6577;
   --accent: #2B4CFF;
-  --mark: #dac000;
+  --mark: #d6040f;
   --rule: #D5DBE5;
 }
 
@@ -72,7 +72,6 @@ h2 { margin: 0 0 0.5rem; font-size: 1.5rem; line-height: 1.2; letter-spacing: -0
 .tags { margin: 0.5rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9375rem; }
 
 /* Contact */
-.email { font-size: clamp(1.5rem, 5vw, 2.75rem); font-weight: 700; letter-spacing: -0.02em; word-break: break-all; }
 .links { margin: 2rem 0 0; padding: 0; list-style: none; }
 .links li { padding: 0.5rem 0; border-top: 1px solid var(--rule); }
 
