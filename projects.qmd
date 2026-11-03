@@ -1,0 +1,19 @@
+﻿---
+title: Projects
+---
+
+::: {.lead}
+Here's what I've worked on.
+:::
+
+::: {.project-card}
+## [Portable DJ Set](https://maynorb.github.io/E155ProjectSite/)
+
+::: {.project-tags aria-label="Technologies"}
+[MCU]{.project-tag} [C]{.project-tag}
+:::
+
+I was in charge of programming the MCU. It read SD card and joystick data before sending it to an FPGA.
+
+[Explore the project →](https://maynorb.github.io/E155ProjectSite/){.project-link}
+:::

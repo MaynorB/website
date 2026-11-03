@@ -1,0 +1,13 @@
+﻿---
+title: Contact
+---
+
+::: {.lead}
+Ways to get in touch.
+:::
+
+::: {.contact-links}
+- [Email](mailto:maynorb2005@gmail.com)
+- [GitHub](https://github.com/maynorb)
+- [LinkedIn](https://www.linkedin.com/in/mbi05/)
+:::

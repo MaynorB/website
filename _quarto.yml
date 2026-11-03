@@ -1,0 +1,42 @@
+﻿project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - projects.qmd
+    - contact.qmd
+  resources:
+    - robots.txt
+
+website:
+  title: Maynor
+  description: Portfolio of Maynor
+  site-url: https://maynorb.github.io/website/
+  favicon: favicon.svg
+  search: false
+  navbar:
+    logo: favicon.svg
+    logo-alt: Maynor home
+    title: Maynor
+    background: dark
+    right:
+      - href: index.qmd
+        text: About
+      - href: projects.qmd
+        text: Projects
+      - href: contact.qmd
+        text: Contact
+  page-footer:
+    left: "© 2026 Maynor"
+
+format:
+  html:
+    theme: darkly
+    css: style.css
+    toc: false
+    anchor-sections: false
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">

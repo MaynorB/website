@@ -1,57 +1,59 @@
-name: Test and Deploy to GitHub Pages
+﻿name: Build and Deploy Quarto to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  test-portfolio:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Check for required website files
-      run: |
-        required="index.html projects.html contact.html style.css favicon.svg"
-        missing=0
-        for file in $required; do
-          if [ ! -f "$file" ]; then
-            echo "Error: $file is missing!"
-            missing=1
-          fi
-        done
-        exit "$missing"
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: '1.9.38'
+
+      - name: Render website
+        run: quarto render
+
+      - name: Check generated website
+        run: |
+          for file in index.html projects.html contact.html style.css favicon.svg robots.txt sitemap.xml; do
+            if [ ! -s "_site/$file" ]; then
+              echo "Error: _site/$file is missing or empty"
+              exit 1
+            fi
+          done
+          test -d _site/site_libs
+
+      - name: Upload rendered website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
 
   deploy:
-    needs: test-portfolio
+    needs: build
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Set up Pages
+        uses: actions/configure-pages@v5
 
-    - name: Setup Pages
-      uses: actions/configure-pages@v5
-
-    - name: Upload website files as an artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: '.'
-
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
