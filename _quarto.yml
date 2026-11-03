@@ -10,15 +10,14 @@
 
 website:
   title: Maynor
-  description: Portfolio of Maynor
+  description: Maynor's Portofolio
   site-url: https://maynorb.github.io/website/
   favicon: favicon.svg
   search: false
   navbar:
     logo: favicon.svg
     logo-alt: Maynor home
-    title: Maynor
-    background: dark
+    title: false
     right:
       - href: index.qmd
         text: About
@@ -31,7 +30,11 @@ website:
 
 format:
   html:
-    theme: darkly
+    theme:
+      light: flatly
+      dark: darkly
+    respect-user-color-scheme: true
+    include-after-body: mobile-nav.html
     css: style.css
     toc: false
     anchor-sections: false

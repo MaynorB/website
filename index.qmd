@@ -2,6 +2,9 @@
 title: About
 ---
 
+:::: {.profile-layout}
+![](images/profile-placeholder.svg){.profile-photo width=240 height=240 fig-alt="Profile photo placeholder"}
+
 ::: {.intro}
 ## Welcome to Maynor's portfolio {.hero-title}
 
@@ -11,3 +14,4 @@ I'm currently a senior studying computer science at Harvey Mudd.
 
 I'm interested in computer vision, game development, embedded systems, and blowing up my PC. Check out the [Projects page](projects.qmd) for details on what I've worked on, or [get in touch](contact.qmd). :D
 :::
+::::

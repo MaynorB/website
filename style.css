@@ -1,10 +1,10 @@
 ﻿:root {
-  --portfolio-bg: #111318;
-  --portfolio-surface: #1b1f27;
-  --portfolio-ink: #eef0f6;
-  --portfolio-muted: #b4bdcc;
-  --portfolio-accent: #91afff;
-  --portfolio-border: #394252;
+  --portfolio-bg: var(--bs-body-bg);
+  --portfolio-surface: var(--bs-tertiary-bg);
+  --portfolio-ink: var(--bs-body-color);
+  --portfolio-muted: var(--bs-secondary-color);
+  --portfolio-accent: var(--bs-link-color);
+  --portfolio-border: var(--bs-border-color);
 }
 body {
   background: var(--portfolio-bg);
@@ -14,7 +14,7 @@ body {
   line-height: 1.7;
 }
 a { color: var(--portfolio-accent); text-underline-offset: 0.22em; }
-a:hover { color: #c6d5ff; }
+a:hover { color: var(--bs-link-hover-color); }
 a:focus-visible, button:focus-visible {
   outline: 3px solid var(--portfolio-accent);
   outline-offset: 4px;
@@ -27,7 +27,9 @@ a:focus-visible, button:focus-visible {
 }
 .navbar > .container-fluid { max-width: 68rem; margin-inline: auto; }
 .navbar-brand { font-weight: 700; }
-.navbar-logo { max-height: 2rem; }
+.navbar-logo { width: 2rem; height: 2rem; max-height: 2rem; }
+.navbar-brand-logo .navbar-logo.light-content { display: block !important; }
+.navbar-brand-logo .navbar-logo.dark-content { display: none !important; }
 .navbar .navbar-nav .nav-link { color: var(--portfolio-muted); }
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active { color: var(--portfolio-accent); }
@@ -61,9 +63,9 @@ h2.hero-title {
 .project-tags { margin-bottom: 1.25rem; }
 .project-tags p { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; }
 .project-tag {
-  border: 1px solid #52668e;
-  background: #26334d;
-  color: #d2dfff;
+  border: 1px solid var(--bs-border-color);
+  background: var(--bs-secondary-bg);
+  color: var(--bs-body-color);
   border-radius: 999px;
   padding: 0.15rem 0.75rem;
   font-size: 0.875rem;
@@ -83,4 +85,49 @@ h2.hero-title {
   main.content { padding-bottom: 2.5rem; }
   .navbar-nav { padding-top: 0.75rem; }
   h2.hero-title { font-size: 2.5rem; }
+}
+
+
+/* Let the stock Flatly/Darkly palettes follow Quarto's native theme toggle. */
+.profile-layout { display: flex; align-items: flex-start; gap: 2.5rem; }
+.profile-layout > p, .profile-layout > .quarto-figure { flex: 0 0 12rem; margin: 0; }
+.profile-layout .intro { flex: 1; min-width: 0; }
+.profile-photo { display: block; width: 12rem; height: 12rem; max-width: 100%; border-radius: 50%; object-fit: cover; }
+.mobile-bottom-nav { display: none; }
+@media (max-width: 991.98px) {
+  .navbar-brand-container { margin-left: 0 !important; margin-right: auto !important; }
+  .navbar-toggler { order: 2; }
+  .quarto-navbar-tools { order: 3; }
+  .navbar-collapse { order: 4; }
+  body { padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); }
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 1040;
+    justify-content: space-around;
+    background: var(--bs-body-bg);
+    border-top: 1px solid var(--bs-border-color);
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-bottom-nav a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-height: 3.5rem;
+    justify-content: center;
+    color: var(--bs-body-color);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+  }
+  .mobile-bottom-nav .bi { font-size: 1.25rem; }
+  .mobile-bottom-nav a[aria-current="page"] { color: var(--bs-link-color); background: var(--bs-secondary-bg); font-weight: 700; }
+  .mobile-bottom-nav a[aria-current="page"] span { text-decoration: underline; text-underline-offset: 0.2em; }
+  html { scroll-padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)); }
+  .profile-layout { flex-direction: column; gap: 2rem; }
+  .profile-layout > p, .profile-layout > .quarto-figure { flex-basis: auto; }
+  .profile-photo { width: 10rem; height: 10rem; }
 }

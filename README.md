@@ -1,6 +1,6 @@
 ﻿# Maynor's portfolio
 
-A three-page portfolio built with Quarto and the Darkly theme.
+A three-page portfolio built with Quarto's standard Flatly (light) and Darkly (dark) themes. The navbar toggle switches modes, and the initial mode follows the visitor's system preference.
 
 ## Local development
 
