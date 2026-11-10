@@ -1,17 +1,14 @@
-﻿---
-title: About
----
-
-:::: {.profile-layout}
-![](images/profile-placeholder.svg){.profile-photo width=240 height=240 fig-alt="Profile photo placeholder"}
+﻿:::: {.profile-layout}
+![](images/headshot.jpg){.profile-photo width=240 height=240 fig-alt="Headshot"}
 
 ::: {.intro}
-## Welcome to Maynor's portfolio {.hero-title}
+## Welcome!{.hero-title}
 
 ::: {.lead}
-I'm currently a senior studying computer science at Harvey Mudd.
+My name is Maynor. I am a Senior at Harvey Mudd College studying Computer Science. 
 :::
 
-I'm interested in computer vision, game development, embedded systems, and blowing up my PC. Check out the [Projects page](projects.qmd) for details on what I've worked on, or [get in touch](contact.qmd). :D
+I've worked on a variety of projects, from embedded systems to web development. You can find more about my work in the [Projects](projects.qmd) section.
+In my spare time, I enjoy playing video games with my friends, I also go to the gym and boulder as well. You can also catch me skating around or playing the saxophone. 
 :::
 ::::

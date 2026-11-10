@@ -15,7 +15,7 @@ website:
   favicon: favicon.svg
   search: false
   navbar:
-    logo: favicon.svg
+    logo: images/favicon.svg
     logo-alt: Maynor home
     title: false
     right:

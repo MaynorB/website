@@ -3,7 +3,7 @@ title: Projects
 ---
 
 ::: {.lead}
-Here's what I've worked on.
+Here are links to take you to view my projects. 
 :::
 
 ::: {.project-card}
